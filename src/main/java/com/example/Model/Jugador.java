@@ -2,36 +2,34 @@ package com.example.Model;
 
 import javax.persistence.*;
 import java.util.Date;
+
 @Entity
 public class Jugador {
 
+    @Column
+    String nombre;
+    @Column
+    Date fechaNacimiento;
+    @Column
+    int canastasTotales;
+    @Column
+    int asistenciasTotales;
+    @Column
+    int rebotesTotales;
+    @Column
+    String posicionCampo;
+    @ManyToOne
+    Equipo equipo;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long id;
 
-    @Column
-    String nombre;
-
-    @Column
-    Date fechaNacimiento;
-
-    @Column
-    int canastasTotales;
-
-    @Column
-    int asistenciasTotales;
-
-    @Column
-    int rebotesTotales;
-
-    @Column
-    String posicionCampo;
-
     public Jugador () {}
 
-    public Jugador (String nombre, Date fechaNacimiento, int canastasTotales, int asistenciasTotales, int rebotesTotales, String posicionCampo){
+    public Jugador(String nombre, Date fechaNacimiento, int canastasTotales, int asistenciasTotales, int rebotesTotales, String posicionCampo, Equipo equipo) {
 
+        this.equipo = equipo;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.canastasTotales = canastasTotales;
@@ -39,6 +37,14 @@ public class Jugador {
         this.rebotesTotales = rebotesTotales;
         this.posicionCampo = posicionCampo;
 
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
     }
 
     public Date getFechaNacimiento() {
@@ -102,11 +108,12 @@ public class Jugador {
         return "Jugador{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
                 ", canastasTotales=" + canastasTotales +
                 ", asistenciasTotales=" + asistenciasTotales +
                 ", rebotesTotales=" + rebotesTotales +
                 ", posicionCampo='" + posicionCampo + '\'' +
+                ", equipo=" + equipo +
                 '}';
     }
 }
