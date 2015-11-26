@@ -1,5 +1,7 @@
 package com.example.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,6 +21,7 @@ public class Jugador {
     @Column
     String posicionCampo;
     @ManyToOne
+    @JsonIgnore
     Equipo equipo;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
